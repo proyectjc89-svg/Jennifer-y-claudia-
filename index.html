@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Técnico | Sistemas Informáticos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS: DISEÑO Y ESTILOS */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navegación y Selector de Estudiantes */
+        nav {
+            width: 100%;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-nav {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-nav.active {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px 0;
+            display: none; /* Se oculta por defecto para el control de JS */
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Perfil */
+        .profile-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #334155;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            border: 4px solid var(--primary-color);
+        }
+
+        /* Secciones */
+        .section-title {
+            color: var(--primary-color);
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        /* Barras de Habilidades */
+        .skill-container {
+            margin-bottom: 15px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar-bg {
+            background: #334155;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-per {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Etiquetas de Proyectos */
+        .tag {
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            border: 1px solid var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .profile-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button class="btn-nav active" onclick="showProfile('jen', this)">Jenn</button>
+        <button class="btn-nav" onclick="showProfile('ariana', this)">Ariana</button>
+    </nav>
+
+    <div id="jen" class="container active">
+        <header class="profile-card">
+            <div class="profile-img">
+                <img src="C:\Users\Usuario\Desktop\Claudia\portafolio2jenni\algo\WhatsApp Image 2026-04-15 at 4.42.36 PM.jpeg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h1>Jenn</h1>
+            <p>Técnico en Sistemas Informáticos en Formación</p>
+            <div style="margin-top: 15px;">
+                <span style="margin: 0 10px;"><i class="fas fa-envelope"></i> jen@email.com</span>
+                <span style="margin: 0 10px;"><i class="fas fa-location-dot"></i> Urbanizacion Satelite Norte</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Objetivo</h3>
+                <p>Estudiante de 6to de secundaria apasionado por la infraestructura de redes y el desarrollo front-end, buscando aplicar conocimientos técnicos en entornos reales.</p>
+            </div>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Formación</h3>
+                <p><strong>Colegio Técnico Industrial</strong></p>
+                <p>Especialidad: Sistemas Informáticos</p>
+                <p><small>2025 - Presente</small></p>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-code"></i> Habilidades de Programación</h3>
+        <div class="card">
+            <div class="skill-container">
+                <div class="skill-info"><span>HTML5</span><span>90%</span></div>
+                <div class="skill-bar-bg"><div class="skill-per" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-info"><span>CSS3</span><span>80%</span></div>
+                <div class="skill-bar-bg"><div class="skill-per" style="width: 80%;"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-info"><span>JavaScript</span><span>65%</span></div>
+                <div class="skill-bar-bg"><div class="skill-per" style="width: 65%;"></div></div>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-network-wired"></i> Conocimientos en Redes</h3>
+        <div class="grid">
+            <div class="card">
+                <h4><i class="fas fa-project-diagram"></i> Infraestructura</h4>
+                <ul>
+                    <li>Redes LAN y WAN</li>
+                    <li>Topología Estrella y Bus</li>
+                    <li>Cableado Estructurado</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4><i class="fas fa-microchip"></i> Simulación</h4>
+                <ul>
+                    <li>Cisco Packet Tracer</li>
+                    <li>Direccionamiento IPv4</li>
+                    <li>Configuración Switch/Router</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-laptop-code"></i> Proyectos Destacados</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Simulación de Red Escolar</h4>
+                <p>Diseño y configuración de una red completa para 3 laboratorios usando subredes en Cisco Packet Tracer.</p>
+                <span class="tag">Redes</span> <span class="tag">Cisco</span>
+            </div>
+            <div class="card">
+                <h4>Portafolio Web</h4>
+                <p>Desarrollo de sitio web personal utilizando estándares modernos de HTML y CSS responsivo.</p>
+                <span class="tag">Frontend</span> <span class="tag">JS</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="ariana" class="container">
+        <header class="profile-card">
+            <div class="profile-img" style="border-color: #e0aaff;"><i class="fas fa-user-graduate"></i></div>
+            <h1>Srta. Ariana</h1>
+            <p>Técnico en Sistemas Informáticos en Formación</p>
+            <div style="margin-top: 15px;">
+                <span style="margin: 0 10px;"><i class="fas fa-envelope"></i> claudiaarianachquecoico@gemail.com</span>
+                <span style="margin: 0 10px;"><i class="fas fa-phone"></i> +591 63505633</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-user-astronaut"></i> Perfil Semi Profesional</h3>
+                <p>Especialista en lógica de programación y diseño de redes. Enfocada en la optimización de procesos y el despliegue de topologías de red eficientes.</p>
+            </div>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-school"></i> Educación</h3>
+                <p><strong>Bachillerato Técnico</strong></p>
+                <p>Mención: Sistemas Informáticos</p>
+                <p>Módulos de especialidad completados al 90%.</p>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-terminal"></i> Programación y Desarrollo</h3>
+        <div class="card">
+            <div class="skill-container">
+                <div class="skill-info"><span>HTML / CSS</span><span>85%</span></div>
+                <div class="skill-bar-bg"><div class="skill-per" style="width: 85%; background: #e0aaff;"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-info"><span>JavaScript</span><span>75%</span></div>
+                <div class="skill-bar-bg"><div class="skill-per" style="width: 75%; background: #e0aaff;"></div></div>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-server"></i> Redes y Conectividad</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Diseño de Topologías</h4>
+                <p>Experiencia en diseño físico y lógico de redes en estrella, configurando direccionamiento IP estático y dinámico.</p>
+                <span class="tag">Packet Tracer</span>
+            </div>
+            <div class="card">
+                <h4>Hardware de Red</h4>
+                <p>Manejo de normas de ponchado de cables (T568A/B) y configuración básica de seguridad en routers.</p>
+                <span class="tag">Infraestructura</span>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-briefcase"></i> Proyectos</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Sistema de Inventario Web</h4>
+                <p>Landing page interactiva para gestión de componentes de hardware escolares.</p>
+                <span class="tag">HTML5</span> <span class="tag">CSS3</span>
+            </div>
+            <div class="card">
+                <h4>Topología Estrella Corporativa</h4>
+                <p>Implementación virtual de una red para oficina con segmentación de IPs.</p>
+                <span class="tag">Networking</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showProfile(profileId, btn) {
+            // 1. Ocultar todos los contenedores
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(c => c.classList.remove('active'));
+
+            // 2. Quitar clase activa de los botones
+            const buttons = document.querySelectorAll('.btn-nav');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            // 3. Mostrar el perfil seleccionado y activar botón
+            document.getElementById(profileId).classList.add('active');
+            btn.classList.add('active');
+
+            // 4. Resetear animaciones de barra (opcional pero visualmente atractivo)
+            const bars = document.querySelectorAll('.skill-per');
+            bars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => { bar.style.width = width; }, 100);
+            });
+        }
+    </script>
+
+</body>
+</html>
